@@ -3,9 +3,9 @@
         <div class="container__input">
             <h2>Создайте свою заметку</h2>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Введите заголовок" aria-label="Recipient's username" aria-describedby="button-addon2"
+                <input type="text" class="form-control" placeholder="Введите заголовок*" aria-label="Recipient's username" aria-describedby="button-addon2"
                     v-model="header"
-                    @click='addNote'
+                    @keyup.enter='addNote'
                 >
             </div>
             <div class="input-group mb-3">
@@ -35,8 +35,8 @@ export default {
     },
     methods: {
         addNote() {
-            if(this.header == "") {
-                this.open4()
+            if(this.header.trim() == "") {
+                this.err()
                 return
             }
             this.$emit('addNote', {
@@ -44,10 +44,11 @@ export default {
                 main: this.main,
                 date: new Date().toLocaleDateString()
             })
+
         },
-        open4() {
-            this.$message.error('Oops, this is a error message.');
-      } 
+        err() {
+            this.$message.error('Введите заголовок');
+        } 
     }
 }
 </script>

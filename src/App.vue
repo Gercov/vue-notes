@@ -15,7 +15,7 @@
         :head="note.header"
         :maintext="note.main"
         :date="note.date"
-        @delete="notes.splice(index, 1)"
+        @delete="ondeleteNote(index)"
       >
       </item>
     </template>
@@ -45,9 +45,17 @@ export default {
   methods: {
     onaddNote(data) {
       this.notes.unshift(data)
+      localStorage.notes = JSON.stringify(this.notes)
+    },
+    ondeleteNote(index) {
+      this.notes.splice(index, 1)
+      localStorage.notes = JSON.stringify(this.notes)
     }
-  }
-};
+  },
+  mounted() {
+    this.notes = JSON.parse(localStorage.notes)
+  },
+}
 </script>
 
 <style>
