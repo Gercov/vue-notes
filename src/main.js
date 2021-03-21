@@ -1,4 +1,8 @@
-import { createApp } from "vue";
+import { createApp } from 'vue'
+import { ElMessage } from 'element-plus';
 import App from "./App.vue";
 
-createApp(App).mount("#app");
+const app = createApp(App)
+app.use(ElMessage)
+
+app.mount('#app')
