@@ -23,9 +23,14 @@ export default {
 <style scoped>
     .text-muted {
         margin-left: auto;
+        white-space: nowrap;
     }
 
     .btn-close {
         margin-left: 20px;
+    }
+
+    .mb-1 {
+        word-wrap: break-word;
     }
 </style>

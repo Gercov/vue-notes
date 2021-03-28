@@ -36,20 +36,21 @@ export default {
     methods: {
         addNote() {
             if(this.header.trim() == "") {
-                this.err()
+                this.err('Введите заголовок')
                 return
             }
             this.$emit('addNote', {
                 header: this.header,
                 main: this.main,
-                date: new Date().toLocaleDateString()
+                date: new Intl.DateTimeFormat('ru-Ru', {day: 'numeric', year: 'numeric', month: 'short'}).format()
             })
-
+            this.header = ""
+            this.main = ""
         },
-        err() {
-            this.$message.error('Введите заголовок');
+        err(text) {
+            this.$message.error(text);
         } 
-    }
+    },
 }
 </script>
 
